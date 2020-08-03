@@ -1,150 +1,157 @@
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-public class MyArrayListTest 
-{
+public class MyArrayListTest{
+    MyArrayList myArr;
+
+    @Before
+    public void initial() {
+        myArr = new MyArrayList<>();
+    }
 
    @Test
-    public void MyArrayListTest1()
-    {
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        //When
-        Integer expected = 20; 
-        Integer actual = myArrayList.getArray().length;
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-    @Test
-    public void MyArrayListTest2()
-    {
+    public void myArrayListTest() {
         //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>(40);
-        //When
-        Integer expected = 40;
-        Integer actual = myArrayList.getArray().length;
-        //Then
-        Assert.assertEquals(expected, actual);
+        Integer expected = 20;
 
+        //When
+         Integer actual = myArr.getArray().length;
+
+        //Then
+        Assert.assertEquals(expected, actual);
     }
+
     @Test
-    public void addTest()
-    {
+    public void addTest() {
         //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
         Integer type = 10; 
-        Object[] array = myArrayList.getArray();
-        //Then 
-        myArrayList.add(type);
-        Object actual = array[0];
+        Object[] array = myArr.getArray();
         Object expected = 10;
+
+        //Then 
+        myArr.add(type);
+        Object actual = array[0];
+        
         //When 
         Assert.assertEquals(expected, actual);
     }
+
     @Test
-    public void removeTest()
-    {
+    public void removeTest() {
         //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
         Integer type1 = 10; 
         Integer type = 5;
-        myArrayList.add(type);
-        myArrayList.add(type1);
+        myArr.add(type);
+        myArr.add(type1);
+        Integer expected = 1;
+
         //when
-        myArrayList.remove(0);
+        myArr.remove(0);
+        Integer actual = myArr.size();
+
        //Then 
-       Integer expected = 1;
-       Integer actual = myArrayList.size();
        Assert.assertEquals(expected, actual);
     }
+
     @Test
-    public void getTest()
-    {
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.add(5);
-        myArrayList.add(10);
-        //When
+    public void getTest(){
+       // Given
         Object expected = 5; 
-        Object actual = myArrayList.get(0);
+        myArr.add(5);
+        myArr.add(10);
+
+        //When
+        Object actual = myArr.get(0);
+
         //Then 
         Assert.assertEquals(expected, actual);
     }
+
     @Test
-    public void setTest()
-    {
+    public void setTest(){
         //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.set(0,5);
-        Object[] array = myArrayList.getArray();
-        Object actual = array[0];
+        myArr.set(0,5);
         Object expected = 5;
+
+        //When
+        Object[] array = myArr.getArray();
+        Object actual = array[0];
+        
+        //Then
         Assert.assertEquals(expected, actual);
 
     }
+
     @Test
-    public void containsTest()
-    {
+    public void containsTest(){
         //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.add(15);
-        //When
-        Boolean actual =myArrayList.contains(15);
+        myArr.add(15);
         Boolean expected = true;
-        Assert.assertEquals(expected, actual);
 
-    }
-    @Test
-    public void isEmptyTest()
-    {
-        //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.add(10);
-        //When 
-        Boolean actual = myArrayList.isEmpty();
-        Boolean expected = false;
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-    @Test
-    public void clearTest()
-    {
-        //Given 
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.add(20);
         //When
-        myArrayList.clear();
-        Integer expected = 0; 
-        Integer actual = myArrayList.size();
+        Boolean actual =myArr.contains(15);
+        
         //Then
         Assert.assertEquals(expected, actual);
+
     }
+
     @Test
-    public void indexOfTest()
-    {
+    public void isEmptyTest(){
         //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.add(5);
-        myArrayList.add(10);
-        myArrayList.add(20);
-        myArrayList.add(10);
+        myArr.add(10);
+        Boolean expected = false;
+
         //When 
-        Integer actual = myArrayList.indexOf(10);
-        Integer expected = 1;
-        //Then
-        Assert.assertEquals(expected, actual);
-    }
-    @Test
-    public void sizeTest()
-    {
-        //Given
-        MyArrayList<Object> myArrayList = new MyArrayList<>();
-        myArrayList.add(20);
-        myArrayList.add(10); 
-        //When 
-        Integer expected = 2;
-        Integer actual = myArrayList.size();
+        Boolean actual = myArr.isEmpty();
+        
         //Then
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void clearTest(){
+        //Given 
+        myArr.add(20);
+        Integer expected = 0; 
+
+        //When
+        myArr.clear();
+        Integer actual = myArr.size();
+
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void indexOfTest(){
+        //Given
+        myArr.add(5);
+        myArr.add(10);
+        myArr.add(20);
+        myArr.add(10);
+        Integer expected = 1;
+
+        //When 
+        Integer actual = myArr.indexOf(10);
+        
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void sizeTest(){
+        //Given
+        myArr.add(20);
+        myArr.add(10); 
+        Integer expected = 2;
+
+        //When 
+        Integer actual = myArr.size();
+        
+        //Then
+        Assert.assertEquals(expected, actual);
+    }
 
 }
